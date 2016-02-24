@@ -14,3 +14,4 @@ In addition you may want to add the SYS_NICE capability, in order for ntpd to be
 # Environment
 SET_CONTAINER_TIMEZONE - Set to "true" (without quotes) to set the tiemzone when starting a container. Default is false.<br/>
 CONTAINER_TIMEZONE - Timezone to use in container. Default is Europe/Stockholm.<br/>
+
