@@ -1,0 +1,28 @@
+# Example Elastalert rule that will alert on `failed_count` field change for
+# documents with the same key
+name: VM Down Detection
+index: ping_test_*
+timestamp_field: 'pinged_at'
+timestamp_type: 'custom'
+timestamp_format: '%Y-%m-%dT%H:%M:%S'
+
+type: change
+compare_key: failed_count
+query_key: uuid
+ignore_null: true
+
+timeframe:
+  minutes: 1
+threshold: 1
+
+filter:
+- range:
+    failed_count:
+        from: 2
+        to: 3
+
+alert: slack
+slack_webhook_url: <callback url>
+slack_username_override: 'remediation-bot'
+slack_emoji_override: ':trollface:'
+slack_msg_color: 'warning'
