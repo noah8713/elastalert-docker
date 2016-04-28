@@ -1,0 +1,25 @@
+# Example Elastalert rule that will alert on `failed_count` field change for
+# documents with the same key
+name: failed_count change
+type: change
+index: ping_test_*
+timestamp_field: 'pinged_at'
+timestamp_type: 'custom'
+timestamp_format: '%Y-%m-%dT%H:%M:%S'
+
+compare_key: failed_count
+query_key: uuid
+ignore_null: true
+
+timeframe:
+  minutes: 1
+threshold: 1
+
+filter:
+- range:
+    failed_count:
+        from: -1
+        to: 100
+
+alert:
+- "debug"

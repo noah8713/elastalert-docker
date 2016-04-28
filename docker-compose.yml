@@ -1,0 +1,11 @@
+elastalert:
+    image: unicell/elasalert:latest
+    cap_add:
+        - SYS_TIME
+        - SYS_NICE
+    volumes:
+        - ./logs:/opt/logs
+        - ./rules:/opt/rules
+        - ./config:/opt/config
+    external_links:
+        - elk_elasticsearch_1:elasticsearch_host
